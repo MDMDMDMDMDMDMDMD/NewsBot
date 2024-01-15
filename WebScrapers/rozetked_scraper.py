@@ -1,0 +1,37 @@
+import os
+import requests
+from bs4 import BeautifulSoup
+from urllib.parse import urljoin
+from pymongo import MongoClient
+from dotenv import load_dotenv
+
+# url = "https://rozetked.me/news"
+#
+# headers = {
+#     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+# }
+
+# req = requests.get(url, headers=headers)
+# src = req.text
+# print(src)
+
+# # Uncomment the following block if you want to save the HTML content to a file
+# with open("rozetked.html", "w", encoding="utf-8") as file:
+#     file.write(src)
+
+# # Uncomment the following block if you want to read the HTML content from a file
+with open("rozetked.html", encoding="utf-8") as file:
+    src = file.read()
+
+soup = BeautifulSoup(src, "lxml")
+
+card_titles = soup.find("div", class_="post_new-title")
+print(card_titles.text.strip())
+
+card_titles = soup.find("div", class_="post_new__main_box_text")
+print(card_titles.text.strip())
+
+img_tag = soup.select_one('picture img')
+base_url = "https://rozetked.me/news"
+image_url = urljoin(base_url, img_tag['src'])
+print(image_url)
