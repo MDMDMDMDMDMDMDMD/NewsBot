@@ -8,7 +8,7 @@ main = ReplyKeyboardMarkup(
     keyboard=[
         [
             KeyboardButton(text="Смайлики"),
-            KeyboardButton(text="Ссылки")
+            KeyboardButton(text="что нового")
         ],
         [
             KeyboardButton(text="Калькулятор"),

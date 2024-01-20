@@ -3,6 +3,7 @@ import random
 from aiogram import Router, Bot
 from aiogram.types import Message
 from aiogram.filters import Command, CommandObject, CommandStart
+from webscrapers import web_scraper
 
 from keyboards import reply
 
@@ -22,6 +23,18 @@ async def get_random_number(message: Message, command: CommandObject):
     await message.reply(f"Random number: {rnum}")
 
 
+# @router.message(Command("test"))
+# async def test(message: Message, bot: Bot):
+#     await bot.send_message(message.chat.id, "test")
 @router.message(Command("test"))
 async def test(message: Message, bot: Bot):
-    await bot.send_message(message.chat.id, "test")
+    await bot.send_message(message.chat.id, "Running web scrapers...")
+
+    # Вызываем функции из файла webscrapers.py
+    web_scraper.scraper_3dnews()
+    web_scraper.scraper_habr()
+    web_scraper.scraper_ixbt()
+    web_scraper.scraper_overclockers()
+    web_scraper.scraper_rozetked()
+
+    await bot.send_message(message.chat.id, "Web scrapers completed!")

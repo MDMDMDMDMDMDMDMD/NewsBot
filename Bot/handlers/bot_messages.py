@@ -27,3 +27,4 @@ async def echo(message: Message):
         await message.answer(f"{smiles[0][0]} <b>{smiles[0][1]}</b>", reply_markup=fabrics.paginator())
     elif msg == "назад":
         await message.answer("Вы перешли в главное меню!", reply_markup=reply.main)
+
